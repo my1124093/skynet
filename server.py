@@ -1,6 +1,18 @@
-from flask import Flask, request, render_template, url_for, current_app,g
-import json
+# -*- coding: utf-8 -*-
+from flask import Flask, request, render_template, url_for
 from ext import *
+
+import requests
+import json
+import time
+import TencentYoutuyun
+
+appid = '10071022'
+secret_id = 'AKIDH7yi1C6EalvAnKGqtpZAZ5mKhttgpMrD'
+secret_key = 'LWmutkPuHUYaVEk3FE4rKezDF8tRn011'
+userid= '1'
+
+end_point = TencentYoutuyun.conf.API_YOUTU_END_POINT        #// 优图开放平台
 
 app = Flask(__name__)
 
@@ -13,7 +25,19 @@ def index():
 
 @app.route('/upload', methods = ['POST'])
 def upload():
-    pass
+    file = request.files['file']
+    file.save('./test.jpeg')
+    youtu = TencentYoutuyun.YouTu(appid, secret_id, secret_key, userid, end_point)
+    ret = youtu.FaceCompare('./a.jpeg','./test.jpeg')
+    print ret
+    return "succ"
+
+
+@app.route('/client')
+def client():
+    static = url_for('static', filename = '')
+    return render_template('client.html', **locals())
+
 
 @app.route('/get-devices', methods = ['POST'])
 def handle_get_all_devices():
