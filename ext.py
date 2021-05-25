@@ -12,8 +12,30 @@ def get_all_info():
     res = []
     for key in r.scan_iter():
         print key, r.get(key)
-        d = r.get(key)
-        d['id'] = key
-        res.append(d)
-    return res
+        res.append({key: r.get(key)})
 
+def create_db():
+    value0 = {
+        'device_id': None,
+        'time': None,
+        'filename': 'a.jpeg'
+    }
+    r.set(0, value0)
+    value1 = {
+        'device_id': None,
+        'time': None,
+        'filename': 'b.jpeg'
+    }
+    r.set(1, value1)
+    value2 = {
+        'device_id': None,
+        'time': None,
+        'filename': 'c.jpeg'
+    }
+    r.set(2, value2)
+    value3 = {
+        'device_id': None,
+        'time': None,
+        'filename': 'd.jpeg'
+    }
+    r.set(3, value3)
