@@ -1,69 +1,32 @@
 <html>
 
-<body>
+  <body>
     <video id="video" autoplay="" style='width:640px;height:480px'></video>
     <button id='snap'>PICTURE</button>
     <canvas id="canvas" width="640" height="480"></canvas>
 
-    <script src="{{static}}lib/jquery/dist/jquery.min.js"></script>
     <script>
-        var video = document.getElementById('video');
-        // Get access to the camera!
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            // Not adding `{ audio: true }` since we only want video now
-            navigator.mediaDevices.getUserMedia({
-                video: true
-            }).then(function(stream) {
-                video.src = window.URL.createObjectURL(stream);
-                video.play();
-            });
-        }
+var video = document.getElementById('video');
+// Get access to the camera!
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  // Not adding `{ audio: true }` since we only want video now
+  navigator.mediaDevices.getUserMedia({
+    video: true
+  }).then(function(stream) {
+    video.src = window.URL.createObjectURL(stream);
+    video.play();
+  });
+}
 
-        var canvas = document.getElementById('canvas');
-        var context = canvas.getContext('2d');
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
 
 
-        // Trigger photo take
-        var up = function() {
-            context.drawImage(video, 0, 0, 640, 480);
-            var newURL = canvas.toDataURL('image/jpeg', 0.9).split(',')[1];
-            var data = atob(newURL);
-
-            var ia = new Uint8Array(data.length);
-            for (var i = 0; i < data.length; i++) {
-                ia[i] = data.charCodeAt(i);
-            };
-
-            // canvas.toDataURL 返回的默认格式就是 image/png
-            var blob = new Blob([ia], {
-                type: "image/jpeg"
-            });
-
-            var fd = new FormData();
-            fd.append('file', blob);
-
-            $.ajax({
-                url: "http://192.168.3.169:5000/upload",
-                type: "POST",
-                data: fd,
-                enctype: 'multipart/form-data',
-                processData: false,
-                contentType: false,
-                success: function() {
-                    console.log('succ');
-                },
-                error: function() {
-                    alert('fail');
-                }
-            });
-        };
-
-        //document.getElementById("snap").addEventListener("click", up);
-        setInterval(function() {
-            console.log('log');
-            up();
-        }, 3000);
+// Trigger photo take
+document.getElementById("snap").addEventListener("click", function() {
+  context.drawImage(video, 0, 0, 640, 480);
+});
     </script>
-</body>
+  </body>
 
 </html>

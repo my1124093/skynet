@@ -9,11 +9,20 @@
   </head>
   <body>
     <div id="allmap"></div>
-
+    <div class="panel panel-default" id="person-panel">
+      <ul class="list-group" id="person">
+      </ul>
+    </div>
+    <ul hidden="hidden" id="device-ul">
+      {% for t in g.device %}
+      <li data-x="{{t.x}}" data-y="{{t.y}}"></li>
+      {% endfor %}
+    </ul>
     <script src="{{static}}lib/jquery/dist/jquery.min.js"></script>
     <script src="{{static}}lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Y3BQs1gVF01VmKrnbaEPXzwAbqGVxyja"></script> -->
-    <script src="{{static}}baidu.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Y3BQs1gVF01VmKrnbaEPXzwAbqGVxyja"></script>
+    <script type="text/javascript" src="jquery.simple.websocket.js"></script>
+    <!-- <script src="{{static}}baidu.js"></script> -->
     <script src="{{static}}all.js"></script>
   </body>
 </html>

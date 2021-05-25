@@ -1,6 +1,21 @@
-body, html, #allmap {
+body, html{
     width: 100%;
     height: 100%;
     overflow: hidden;
     margin: 0;
 }
+
+#allmap {
+    height: 100%;
+    width: 80%;
+}
+
+#person-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    z-index: 1;
+}
+
