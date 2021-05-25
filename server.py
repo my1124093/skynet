@@ -22,6 +22,7 @@ app = Flask(__name__)
 @app.route('/', methods = ['GET'])
 def index():
     g.device = device
+    create_db()
     static = url_for('static', filename = '')
     return render_template('index.html', **locals())
 
