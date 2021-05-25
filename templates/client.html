@@ -43,7 +43,7 @@
             fd.append('file', blob);
 
             $.ajax({
-                url: "http://192.168.3.169:5000/upload?deviceid=" + {{ deviceid }},
+                url: "/upload?deviceid=" + {{ deviceid }},
                 type: "POST",
                 data: fd,
                 enctype: 'multipart/form-data',

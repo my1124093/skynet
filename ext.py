@@ -7,12 +7,15 @@ r = redis.StrictRedis(host='localhost', db=0)
 def init():
     device.append({'x': 114.504212, 'y': 30.487297 })
     device.append({'x': 114.461884, 'y': 30.512097 })
+    device.append({'x': 114.481884, 'y': 30.498497 })
 
 def get_all_info():
     res = []
-    for key in r.scan_iter():
-        print key, r.get(key)
-        res.append({key: r.get(key)})
+    for key in range(0, 2):
+        d = eval(r.get(key))
+        d['id'] = key
+        res.append(d)
+    return res
 
 def create_db():
     value0 = {

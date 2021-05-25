@@ -7,15 +7,6 @@ body, html{
 
 #allmap {
     height: 100%;
-    width: 80%;
-}
-
-#person-panel {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 20%;
-    height: 100%;
-    z-index: 1;
+    width: 100%;
 }
 

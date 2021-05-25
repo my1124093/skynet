@@ -46,12 +46,9 @@ def upload():
     file = request.files['file']
     file.save('./test.jpeg')
     thread.start_new_thread(compare, (0, 'a.jpeg', deviceid))
-    thread.start_new_thread(compare, (1, 'b.jpeg', deviceid)) 
+    thread.start_new_thread(compare, (1, 'b.jpeg', deviceid))
     return "succ"
 
-
-
-    return "succ"
 
 @app.route('/client')
 def client():
@@ -62,7 +59,7 @@ def client():
 
 @app.route('/get-devices', methods = ['POST'])
 def handle_get_all_devices():
-    print json.dumps(device)
+    # print json.dumps(device)
     return json.dumps(device)
 
 @app.route('/info', methods = ['POST'])
@@ -72,7 +69,7 @@ def info():
 if __name__ == '__main__':
     init()
     app.debug = True
-    app.run(host='0.0.0.0')
+    # app.run(host='0.0.0.0')
 
     from gevent.wsgi import WSGIServer
     http_server = WSGIServer(('', 5000), app)
