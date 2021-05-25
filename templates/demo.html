@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="{{static}}lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <button id="btn" class="default-btn btn">Button</button>
+    <button id="btn-1" class="default-btn btn"></button>
+    <script src="{{static}}lib/jquery/dist/jquery.min.js"></script>
+    <script src="{{static}}lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+$('#btn').click(function(){
+    var post_data = {
+        'device_id': 'device_1',
+        'face_ids': [
+            'face_1',
+            'face_2',
+            'face_3'
+        ]
+    };
+    $.post('https://192.168.3.169:5000/upload', post_data, function(data){
+        alert(data);
+    }).fail(function(){
+        alert('fail');
+    });
+});
+    </script>
+  </body>
+</html>
