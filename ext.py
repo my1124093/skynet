@@ -11,7 +11,7 @@ def init():
 
 def get_all_info():
     res = []
-    for key in range(0, 2):
+    for key in range(0, 3):
         d = eval(r.get(key))
         d['id'] = key
         print d

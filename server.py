@@ -29,7 +29,7 @@ def index():
 
 def compare(id, image, deviceid):
     youtu = TencentYoutuyun.YouTu(appid, secret_id, secret_key, userid, end_point)
-    ret = youtu.FaceCompare(image, './test.jpeg')
+    ret = youtu.FaceCompare(image, './test' + str(deviceid) + '.jpeg')
     ret['personid'] = id
     print ret
     if ret['errorcode'] == 0:
@@ -45,9 +45,11 @@ def compare(id, image, deviceid):
 def upload():
     deviceid = request.args.get('deviceid')
     file = request.files['file']
-    file.save('./test.jpeg')
+    file.save('./test' + str(deviceid) + '.jpeg')
+    print './test' + str(deviceid) + '.jpeg'
     thread.start_new_thread(compare, (0, 'a.jpeg', deviceid))
     thread.start_new_thread(compare, (1, 'b.jpeg', deviceid))
+    thread.start_new_thread(compare, (2, 'c.jpeg', deviceid))
     return "succ"
 
 

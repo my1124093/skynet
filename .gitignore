@@ -4,3 +4,4 @@
 **.jpeg
 dump.rdb
 **.DS_Store
+templates/message.html
